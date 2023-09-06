@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASIA inernship</title>
+    <style>
+        /* camera_names = ['CAM_FRONT', 'CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_BACK', 'CAM_BACK_RIGHT', 'CAM_FRONT_RIGHT'] */
+        .video-row {
+            display: flex;
+            align-items: center; /*后续有代码来将同一行的两个视频隔开一定距离*/
+            margin-bottom: 20px; /*上下两行视频的间距*/
+        }
+
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center; /*正上&下方*/
+            margin-top: 0px;
+        }
+
+        img {
+            width:800px;
+            height:600px;
+        }
+            /* style="flex-direction:column"*/
+    </style>
+</head>
+
+
+<body>
+    <h2>Acknowledgement</h2>
+    <p>
+        We have referenced the paper: <a href="https://proceedings.mlr.press/v205/wei23a/wei23a.pdf">SurroundDepth: Entangling Surrounding Views for Self-Supervised Multi-Camera Depth Estimation</a>
+    </p>
+    <br>
+
+
+    <h2>Technical Documentation (in Chinese 中文)</h2>
+    <a href="technical_documents\1.SurroundDepth论文内容摘要.pdf">Summary of the paper 'SurroundDepth: Entangling Surrounding Views for Self-Supervised Multi-Camera Depth Estimation' (CoRL 2022)</a>
+    <br><br>
+    <a href="technical_documents\2.基于SurroundDepth和nuscenes数据集的监督学习改进方法.pdf">A supervised pre-trained method for multi-camera surround-view depth estimation</a>
+    <br><br>
+    <a href="technical_documents\3.基于CASIA数据集的SurroundDepth模型实现.pdf">The multi-camera surround-view depth estimation on the CASIA dataset (which I captured and processed)</a>
+    <br><br>
+    <a href="technical_documents\4.针孔相机与鱼眼相机的异构设计思路.pdf">An end-to-end two-stage heterogeneous depth estimation method by combining fisheye and pinhole cameras.</a>
+
+    <br><br><br>
+
+    <h2>Supervised Surround-Depth estimation of the Nuscenes dataset</h2>
+    <div class="video-row">
+        <div class="video-container">
+            <p>'CAM_FRONT'</p>
+            <video width="320" height="240" controls style="margin-right: 10px">
+                <source src="nuscenes_videos/nusc_supervised_0(2).mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-container">
+            <p>'CAM_FRONT_LEFT'</p>
+            <video width="320" height="240" controls>
+                <source src="nuscenes_videos/nusc_supervised_1.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-container">
+            <p>'CAM_FRONT_LEFT'</p>
+            <video width="320" height="240" controls>
+                <source src="nuscenes_videos/nusc_supervised_2.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+
+    <div class="video-row">
+        <div class="video-container">
+            <p>'CAM_FRONT'</p>
+            <video width="320" height="240" controls style="margin-right: 10px">
+                <source src="nuscenes_videos/nusc_supervised_3.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-container">
+            <p style="flex-direction:column">'CAM_FRONT_LEFT'</p>
+            <video width="320" height="240" controls>
+                <source src="nuscenes_videos/nusc_supervised_4.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-container">
+            <p style="flex-direction:column">'CAM_FRONT_LEFT'</p>
+            <video width="320" height="240" controls>
+                <source src="nuscenes_videos/nusc_supervised_5.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <br><br>
+
+    <h2>Self-supervised Surround-Depth estimation of CASIA (still improving)</h2>
+
+    <p>Note: There is an error in camera calibration of CAMERA_FRONT, so we only use 5 cameras for depth estimation</p>
+
+    <div class="video-row">
+        <div class="video-container">
+            <p>'CAM_FRONT_LEFT'</p>
+            <video width="320" height="240" controls style="margin-right: 10px">
+                <source src="CASIA_videos/casia_0.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-container">
+            <p style="flex-direction:column">'CAM_BACK_LEFT'</p>
+            <video width="320" height="240" controls>
+                <source src="CASIA_videos/casia_1.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-container">
+            <p style="flex-direction:column">'CAM_BACK'</p>
+            <video width="320" height="240" controls>
+                <source src="CASIA_videos/casia_2.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+
+    <div class="video-row">
+        <div class="video-container">
+            <p>'CAM_BACK_RIGHT'</p>
+            <video width="320" height="240" controls style="margin-right: 10px">
+                <source src="CASIA_videos/casia_3.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-container">
+            <p style="flex-direction:column">'CAM_FRONT_RIGHT'</p>
+            <video width="320" height="240" controls>
+                <source src="CASIA_videos/casia_4.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <br><br>
+
+
+    <p style="font-size: x-large">
+        <strong>A self-supervised two-step heterogeneous camera depth estimation method</strong>
+    </p>
+    <p>
+        The comprehensive implementation details can be found in <a href="technical_documents\4.针孔相机与鱼眼相机的异构设计思路.pdf">An end-to-end two-stage heterogeneous depth estimation method by combining fisheye and pinhole cameras.</a>
+    </p>
+    <p style="line-height: 1.5">
+        Notice: <br>
+        1) Setup Requirement: Equipped with 1 Pinhole Camera and 1 Fisheye Camera with same orientation (e.g. CAM_FRONT) <br>
+        2) For step2, we project pinhole to fisheye as the latter normally has larger view<br>
+        3) To preserve its wide-angle characteristic, no calibration has been made to correct fisheye camera's distortion, instead we enocde the fisheye model directly
+    </p>
+    <p>Step 1</p>
+    <img src="pictures/yigou1.jpg">
+    <br><br><br>
+    <p>Step 2</p>
+    <img style="width: 800px; height:800px" src="pictures/yigou2.jpg">
+
+
+
+    <br>
+    <p><a href="index.html">Go back to the Homepage</a></p>
+</body>
+</html>
